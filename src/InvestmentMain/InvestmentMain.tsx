@@ -1,12 +1,13 @@
 import * as React from 'react';
 import InvestmentForm from '../InvestmentForm/InvestmentForm';
+import InvestmentTable from '../InvestmentTable/InvestmentTable';
 
 import logo from '../assets/investment-calculator-logo.png';
 
 function InvestmentMain() {
   return (
     <div>
-      <header>
+      <header className='header'>
         <img src={logo} alt="logo" />
         <h1>Investment Calculator</h1>
       </header>
@@ -15,8 +16,9 @@ function InvestmentMain() {
       <InvestmentForm />
 
       {/* Insert investment table */}
+      <InvestmentTable />
     </div>
   );
 }
 
-export default InvestmentMain
+export default InvestmentMain;
