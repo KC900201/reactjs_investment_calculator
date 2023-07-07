@@ -1,6 +1,13 @@
 import * as React from 'react';
 
 function InvestmentTable() {
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+
   return (
     <table className="result">
       <thead>
@@ -15,7 +22,7 @@ function InvestmentTable() {
       <tbody>
         <tr>
           <td>YEAR NUMBER</td>
-          <td>TOTAL SAVINDS @ END OF YEAR</td>
+          <td>TOTAL SAVINGS END OF YEAR</td>
           <td>INTEREST GAINED IN YEAR</td>
           <td>TOTAL INTEREST GAINED</td>
           <td>TOTAL INVESTED CAPITAL</td>
@@ -25,4 +32,4 @@ function InvestmentTable() {
   );
 }
 
-export default InvestmentTable
+export default InvestmentTable;
