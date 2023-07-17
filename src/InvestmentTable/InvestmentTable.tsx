@@ -1,4 +1,5 @@
 import * as React from 'react';
+import classes from '../css/modules/InvestmentTable.module.css'
 import { InvestmentDataType } from '../enums/investmentEnum';
 
 function InvestmentTable(props: {
@@ -20,7 +21,7 @@ function InvestmentTable(props: {
   );
 
   return (
-    <table className="result">
+    <table className={classes.result}>
       <thead>
         <tr>
           <th>Year</th>

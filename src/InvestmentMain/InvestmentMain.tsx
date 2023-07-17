@@ -1,13 +1,11 @@
 import * as React from 'react';
-
+import Header from '../Header/Header';
 import InvestmentForm from '../InvestmentForm/InvestmentForm';
 import InvestmentTable from '../InvestmentTable/InvestmentTable';
 import type {
   InvestmentDataInput,
   InvestmentDataType,
 } from '../enums/investmentEnum';
-
-import logo from '../assets/investment-calculator-logo.png';
 
 function InvestmentMain() {
   const [userInput, setUserInput] = React.useState<InvestmentDataInput | null>(
@@ -48,25 +46,22 @@ function InvestmentMain() {
   }
 
   return (
-    <div>
-      <header className="header">
-        <img src={logo} alt="logo" />
-        <h1>Investment Calculator</h1>
-      </header>
+    <>
+      <Header />
 
       {/* Insert form here */}
       <InvestmentForm onCalculateHandler={calculateHandler} />
 
       {/* Insert investment table */}
       {!userInput ? (
-        <p>No Data</p>
+        <p>No Investment calculations yet</p>
       ) : (
         <InvestmentTable
           investmentYearlyData={yearlyData}
           initialInvestment={userInput?.currentSavings}
         />
       )}
-    </div>
+    </>
   );
 }
 
