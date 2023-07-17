@@ -1,20 +1,14 @@
 import * as React from 'react';
+import type {
+  InvestmentDataType,
+  InvestmentDataInput,
+} from '../enums/investmentEnum';
 
-type investmentDataType = {
-  year: number;
-  yearlyInterest: number;
-  savingsEndOfYear: number;
-  yearlyContribution: number;
-};
+function InvestmentForm(props: {
+  onCalculateHandler: (userInput: InvestmentDataInput) => void;
+}) {
+  const { onCalculateHandler } = props;
 
-type InvestmentDataInput = {
-  currentSavings?: number;
-  yearlyContribution?: number;
-  expectedReturn?: number;
-  duration?: number;
-};
-
-function InvestmentForm() {
   const initialUserInput: InvestmentDataInput = {
     currentSavings: undefined,
     yearlyContribution: undefined,
@@ -33,30 +27,6 @@ function InvestmentForm() {
         [inputType]: parseInt(value),
       };
     });
-  };
-
-  const calculateHandler = (userInput: any) => {
-    const yearlyData: investmentDataType[] = [];
-
-    let currentSavings = +userInput['current-savings'];
-    const yearlyContribution = +userInput['yearly-contribution'];
-    const expectedReturn = +userInput['expected-return'] / 100;
-    const duration = +userInput['duration'];
-
-    // Calculates yearly results
-    for (let i = 0; i < duration; i++) {
-      const yearlyInterest = currentSavings * expectedReturn;
-      currentSavings += yearlyInterest + yearlyContribution;
-      yearlyData.push({
-        year: i + 1,
-        yearlyInterest: yearlyInterest,
-        savingsEndOfYear: currentSavings,
-        yearlyContribution: yearlyContribution,
-      });
-    }
-
-    // Continue calculation with yearlyData (07/03/2023)
-    // May have to move to InvestmentMain.tsx
   };
 
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
@@ -127,7 +97,11 @@ function InvestmentForm() {
         <button type="reset" className="buttonAlt" onClick={onReset}>
           Reset
         </button>
-        <button type="submit" className="button" onClick={calculateHandler}>
+        <button
+          type="submit"
+          className="button"
+          onClick={() => onCalculateHandler(userInput)}
+        >
           Calculate
         </button>
       </p>
